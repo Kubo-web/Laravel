@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Dashboard;
-
+use App\Models\Post;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\Configuration\Merger;
 
 class PostController extends Controller
 {
@@ -21,16 +23,22 @@ class PostController extends Controller
      */
     public function create()
     {
-            $categories = Category::get();
+            $categories = Category::pluck('id', 'title');
+            //echo dd($categories);
             echo view('dashboard.post.create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        echo request("title");
+        $data = array_merge($request->all(), ['image' => '']);
+        //dd($data);
+        echo dd($data);
+ 
+        Post::create($data);
+
     }
 
     /**

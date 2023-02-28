@@ -17,8 +17,8 @@
         <label for="">Categoria</label>
         <select name="category_id" id="">
             <option value=""></option>
-                @foreach ($categories as $c)
-                    <option value="{{ $c->id}}">{{$c->title}} </option>
+                @foreach ($categories as $title=> $id)
+                    <option value="{{ $id }}">{{ $title }} </option>
                 @endforeach
                 </select>
                 <label for="">Posteado</label>
@@ -29,9 +29,9 @@
                 </select>
 
         <label for="">Contenido</label>
-        <input type="text" name="contenido">
+        <input type="text" name="content">
         <label for="">Descripcion</label>
-        <input type="text" name="descripcion">
+        <input type="text" name="description">
         <button type="submit">Enviar</button>
 
     </body>
